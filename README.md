@@ -1,46 +1,29 @@
-# Getting Started with Create React App
+# Week 7 - Challenge WeekEnd
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app), using the [Redux](https://redux.js.org/) and [Redux Toolkit](https://redux-toolkit.js.org/) TS template.
+## Red social
 
-## Available Scripts
+Crea una red social con React. La aplicación sólo se puede usar estando logueado (en abierto únicamente se puede ver login y registro), y una vez iniciada la sesión, el usuario puede ver un listado de todos los usuarios de la red.
 
-In the project directory, you can run:
+El usuario podrá editar su perfil.
 
-### `npm start`
+De cada usuario podrá ver su perfil, y podrá añadirlo como amigo o como enemigo (o cambiar entre ambos). Es decir, yo como usuario veo todos los demás usuarios, y además puedo tener una relación con algunos de ellos. Esa relación puede ser de amigo o de enemigo (recuerda: puede no haber relación).
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+En el listado de usuarios debe poder haber un filtro para enseñar:
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+- todos los usuarios
+- sólo los amigos
+- sólo los enemigos
 
-### `npm test`
+El listado debe mostrar el total de usuarios (o amigos/enemigos si se ha usado el filtro).
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+La red social consumirá los datos de una API desarrollada con Express, conectada a una base de datos en MongoDB. La validación de usuario se implementará mediante JWT.
 
-### `npm run build`
+## Extra
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+La API mantendrá un log de todas las relaciones, almacenado en un archivo de texto en el servidor. Cada vez que se cree o destruya una relación (de cualquiera de los dos tipos), se debe añadir una línea al log, con uno de estos tres formatos:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+New relationship: Luis & Marta (friends)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+New relationship: Luis & Marta (enemies)
 
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+Removed relationship: Luis & Marta
