@@ -2,8 +2,8 @@ export type UserStructure = {
   id: string;
   email: string;
   password: string;
-  friends: UserStructure[];
-  enemies: UserStructure[];
+  friends: Partial<UserStructure[]>;
+  enemies: Partial<UserStructure[]>;
 };
 
 export class User implements UserStructure {

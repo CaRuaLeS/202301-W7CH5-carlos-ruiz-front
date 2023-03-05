@@ -31,19 +31,27 @@ export const userReducer = createReducer(initialState, (builder) => {
 
   builder.addCase(ac.addFriendCreator, (state, { payload }) => ({
     ...state,
-    users: [...state.users, payload],
+    users: state.users.map((item) =>
+      item.id === payload.id ? { ...item, ...payload } : item
+    ),
   }));
   builder.addCase(ac.removeFriendCreator, (state, { payload }) => ({
     ...state,
-    users: [...state.users, payload],
+    users: state.users.map((item) =>
+      item.id === payload.id ? { ...item, ...payload } : item
+    ),
   }));
   builder.addCase(ac.addEnemyCreator, (state, { payload }) => ({
     ...state,
-    users: [...state.users, payload],
+    users: state.users.map((item) =>
+      item.id === payload.id ? { ...item, ...payload } : item
+    ),
   }));
   builder.addCase(ac.removeEnemyCreator, (state, { payload }) => ({
     ...state,
-    users: [...state.users, payload],
+    users: state.users.map((item) =>
+      item.id === payload.id ? { ...item, ...payload } : item
+    ),
   }));
 
   builder.addDefaultCase((state) => state);
