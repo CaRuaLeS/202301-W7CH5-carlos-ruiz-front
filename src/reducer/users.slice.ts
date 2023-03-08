@@ -1,6 +1,6 @@
 import type { PayloadAction } from "@reduxjs/toolkit";
 import { createSlice } from "@reduxjs/toolkit";
-import { UserStructure } from "../model/user";
+import { ServerType, UserStructure } from "../model/user";
 
 // register -> nada en el estado
 // logged -> userLogged{ token, ..., ...}
@@ -8,39 +8,29 @@ import { UserStructure } from "../model/user";
 
 type State = {
   // No hace falta un boolean paara comprobar si está logged, con el null sabemos que no está logged
-  userLogged: {
-    token: string;
-    user: UserStructure;
-    // Can add role: string
-  } | null;
+  userLogged: UserStructure;
+  // Can add role: string
   users: UserStructure[];
 };
 
 const initialState: State = {
-  userLogged: null,
+  userLogged: {} as UserStructure,
   users: [],
 };
-export type LoginData = {
-  token: string;
-  user: UserStructure;
-};
 
-const slice = createSlice({
+export const userSlice = createSlice({
   name: "user",
   initialState,
   reducers: {
     register(state, action: PayloadAction<UserStructure>) {
       state.users = [...state.users, action.payload];
     },
-    login(state, action: PayloadAction<LoginData>) {
-      state.userLogged = {
-        token: action.payload.token,
-        user: action.payload.user,
-      };
+    login(state, action: PayloadAction<UserStructure>) {
+      state.userLogged = action.payload;
     },
 
-    loadUsers(state, action: PayloadAction<UserStructure>) {
-      state.users = [...state.users, action.payload];
+    loadUsers(state, action: PayloadAction<UserStructure[]>) {
+      state.users = action.payload;
     },
     updateRelations(state, action: PayloadAction<UserStructure>) {
       state.users = state.users.map((item) =>
@@ -74,5 +64,4 @@ const slice = createSlice({
   },
 });
 
-export const { register, login, loadUsers, updateRelations } = slice.actions;
-export default slice.reducer;
+export default userSlice.reducer;
