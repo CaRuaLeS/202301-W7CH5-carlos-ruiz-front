@@ -1,6 +1,6 @@
 import { PayloadAction } from "@reduxjs/toolkit";
 import { UserStructure } from "../model/user";
-import reducer, { State, userSlice } from "./users.slice";
+import reducer, { State } from "./users.slice";
 
 const mockUsers = [
   { id: "1", email: "juan", password: "red", friends: [], enemies: [] },

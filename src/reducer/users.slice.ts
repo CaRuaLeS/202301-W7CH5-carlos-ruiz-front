@@ -1,6 +1,6 @@
 import type { PayloadAction } from "@reduxjs/toolkit";
 import { createSlice } from "@reduxjs/toolkit";
-import { ServerType, UserStructure } from "../model/user";
+import { UserStructure } from "../model/user";
 
 // register -> nada en el estado
 // logged -> userLogged{ token, ..., ...}
