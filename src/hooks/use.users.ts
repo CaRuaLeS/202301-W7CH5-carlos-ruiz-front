@@ -10,7 +10,7 @@ export function useUsers(repo: UsersRepo) {
   const users = useSelector((state: RootState) => state.users);
   const dispatch = useDispatch<AppDispatch>();
 
-  const registerUSer = async (info: UserStructure) => {
+  const registerUser = async (info: Partial<UserStructure>) => {
     try {
       const data = await repo.create(info, "register");
       dispatch(register(data.results[0]));
@@ -37,9 +37,26 @@ export function useUsers(repo: UsersRepo) {
     } catch (error) {}
   };
 
+  const updateUsers = async (
+    userInfo: Partial<UserStructure>,
+    action: string
+  ) => {
+    try {
+      if (!users.userLogged.token) throw new Error("Not authorized");
+
+      const info = await repo.update(userInfo, action, users.userLogged.token);
+
+      dispatch(updateRelations(info.results[0]));
+    } catch (error) {
+      console.log((error as Error).message);
+    }
+  };
+
   return {
-    registerUSer,
+    users,
+    registerUser,
     loginUSer,
     readAllUsers,
+    updateUsers,
   };
 }
