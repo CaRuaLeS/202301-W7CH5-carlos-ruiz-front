@@ -6,7 +6,7 @@ import { ServerType, UserStructure } from "../model/user";
 // logged -> userLogged{ token, ..., ...}
 // Lista de usuario
 
-type State = {
+export type State = {
   // No hace falta un boolean paara comprobar si está logged, con el null sabemos que no está logged
   userLogged: UserStructure;
   // Can add role: string
